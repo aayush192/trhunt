@@ -27,9 +27,18 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 10px;
 }
+<<<<<<< HEAD
 
 .icon {
   font-size: 40px;
+=======
+.type-card.active{
+background-color: aquamarine;
+}
+
+.icon {
+  font-size: 25px;
+>>>>>>> commit changes
 }
 
 .proceed-btn, .confirm-btn, .next-btn {

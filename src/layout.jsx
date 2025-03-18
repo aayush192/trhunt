@@ -16,8 +16,5 @@ function Layout() {
   );
 }
 
-<<<<<<< HEAD
 export default Layout;
-=======
-export default Layout;
->>>>>>> commit changes
+

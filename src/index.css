@@ -28,7 +28,10 @@ body {
   border-radius: 10px;
 }
 
-
+.type-card.active {
+  background-color: rgb(102, 102, 208); /* Active button color */
+  color: white;
+}
 .icon {
   font-size: 25px;
 

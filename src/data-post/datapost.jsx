@@ -5,13 +5,13 @@ import React from "react";
         headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({type:data})
+          body: JSON.stringify({userId:data})
     })
     if(!resp.ok){
         throw new Error('server response is not ok')
     } 
     console.log(resp);
-    return resp;
+    return resp.json();
  }
  export default postVal;
 

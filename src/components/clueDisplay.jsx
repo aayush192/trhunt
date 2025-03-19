@@ -16,7 +16,7 @@ const ClueDisplay = () => {
 try{
         const response=await postVal(data);
         console.log(response);
-     const value=await response.json();
+     const value=await response;
      setResponse(value);
 }catch(err){
 setError(err.message)
@@ -25,14 +25,29 @@ setError(err.message)
 }
 }
 
+useEffect(() => {
+  if (data == null) {
+    alert('First select any challenge');
+  }
+}, [data]);
+
 useEffect(()=>{
   const fetchData=async()=>{
 await handleSubmit();
- console.log(response);
+
   }
   fetchData();
 },[])
 
+useEffect(() => {
+  if (response !== null) {
+    console.log('response:', response);
+  }
+}, [response]);
+
+if (data === null) return null;
+if (loading) return <div>Loading...</div>;
+if (error) return <div>Error: {error}</div>;
 
   return (
 

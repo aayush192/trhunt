@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import userContext from "../context/Context";
 import postVal from "../data-post/datapost";
 import { useContext,useState } from "react";
@@ -10,13 +10,17 @@ const ClueDisplay = () => {
     const [response,setResponse]=useState(null);
 
 
-    const handleSubmit=async()=>{
+    const PostVal=async(e)=>{
+        e.prevent.Default();
         setLoading(true);
         setError(null);
 try{
-        const response=await postVal(data);
-        console.log(response);
-     const value=await response;
+        const response=await postVal();
+
+        if(!response.ok){
+            throw new Error('network response was not ok');
+        }
+     const value=await response.json();
      setResponse(value);
 }catch(err){
 setError(err.message)
@@ -25,29 +29,7 @@ setError(err.message)
 }
 }
 
-useEffect(() => {
-  if (data == null) {
-    alert('First select any challenge');
-  }
-}, [data]);
 
-useEffect(()=>{
-  const fetchData=async()=>{
-await handleSubmit();
-
-  }
-  fetchData();
-},[])
-
-useEffect(() => {
-  if (response !== null) {
-    console.log('response:', response);
-  }
-}, [response]);
-
-if (data === null) return null;
-if (loading) return <div>Loading...</div>;
-if (error) return <div>Error: {error}</div>;
 
   return (
 

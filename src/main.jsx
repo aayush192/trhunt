@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Layout from './layout.jsx'
+import Provider from './context/contextprovider.jsx'
+import Layout from './layout/layout.jsx'
 import {  createBrowserRouter, createRoutesFromElements, RouterProvider,Route } from 'react-router-dom'
 import './index.css'
 import GameTypeSelector from './components/gameTypeSelector.jsx'
@@ -18,6 +19,8 @@ createRoutesFromElements(
 )
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider>
     <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )

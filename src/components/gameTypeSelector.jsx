@@ -1,42 +1,68 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import getData from '../date-fetch/fetch';
+import userContext from '../context/Context';
+
 const GameTypeSelector = () => {
-  const [data,setData]=useState('10');
   const [activeButton, setActiveButton] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { data, setData, val, setVal } = useContext(userContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getData();
+        setVal(result);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleClick = (index) => {
     setActiveButton(index);
   };
+
+  if (loading) {
+    return <div>Loading challenges...</div>;
+  }
+
   return (
     <div className="game-type-selector">
-     
-        <button className={`type-card ${activeButton === 0 ? 'active' : ''}  hover:text-blue-300`} onClick={()=>{
-          setData('10');
-          handleClick(0)
-        }}>
-          <div className="icon font-bold">Basic </div>
-       
-          <p>A fun and challenging treasure hunt game with 10 clues.<br/>If you can't just quit.</p>
+      <div className="game-selector">
+        {val.map((element, index) => (
+          <div key={element.type} >
+            <button
+              className={`type-card ${activeButton === index ? 'active' : ''} hover:text-blue-300 h-40`}
+              onClick={() => {
+                setData(element.type);
+                handleClick(index);
+              }}
+            >
+              <div className="icon font-bold">{element.difficulty}</div>
+              <p>{element.description}</p>
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="game-selector-button">
+        <button
+          className="proceed-btn"
+          onClick={() => {
+            if (data) {
+              navigate('clueDisplay');
+            } else {
+              alert('Please select a challenge first');
+            }
+          }}
+        >
+          Proceed
         </button>
-        <button className={`type-card ${activeButton === 1 ? 'active' : ''}  hover:text-blue-300`} onClick={()=>{
-          setData('20');
-          handleClick(1)
-        }}>
-          <div className="icon font-bold">Intermediate</div>
-         <p>A more challenging treasure hunt with 20 clues.<br/>Can you do it?</p>
-        </button>
-        <button className={`type-card ${activeButton === 2 ? 'active' : ''} hover:text-blue-300 `} onClick={()=>{
-          setData('30');
-          handleClick(2)
-        }}>
-          <div className="icon font-bold">Ultimate</div>
-          <p>The hardest challenge with 30 difficult clues. Only the best can finish!</p>
-        </button>
-     
-      <button className="proceed-btn" onClick={()=>{
-        getData(data);
-        console.log(data);
-      }}>Proceed</button>
+      </div>
     </div>
   );
 };

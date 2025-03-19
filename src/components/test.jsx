@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import userContext from "../context/Context";
 import postVal from "../data-post/datapost";
 import { useContext,useState } from "react";
@@ -10,12 +10,16 @@ const ClueDisplay = () => {
     const [response,setResponse]=useState(null);
 
 
-    const handleSubmit=async()=>{
+    const PostVal=async(e)=>{
+        e.prevent.Default();
         setLoading(true);
         setError(null);
 try{
-        const response=await postVal(data);
-        console.log(response);
+        const response=await postVal();
+
+        if(!response.ok){
+            throw new Error('network response was not ok');
+        }
      const value=await response.json();
      setResponse(value);
 }catch(err){
@@ -25,13 +29,6 @@ setError(err.message)
 }
 }
 
-useEffect(()=>{
-  const fetchData=async()=>{
-await handleSubmit();
- console.log(response);
-  }
-  fetchData();
-},[])
 
 
   return (

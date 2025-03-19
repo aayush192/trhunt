@@ -5,18 +5,35 @@ body {
   background: #f4f4f4;
 }
 
-.header, .footer {
+.header {
   padding: 20px;
   background: #d3d3d3;
   text-align: center;
 }
-
+.footer{
+  max-height: 250px;
+}
 .game-type-selector {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 20px;
-  padding: 30px;
   flex-wrap: wrap;
+  margin-top: 2.2em;
+}
+.game-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  padding: 10px;
+  padding-top: 40px;
+  flex-wrap: wrap;
+}
+.game-selector-button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: px;
 }
 
 .type-card {
@@ -28,14 +45,16 @@ body {
   border-radius: 10px;
 }
 
-.type-card.active {
-  background-color: rgb(102, 102, 208); /* Active button color */
-  color: white;
+.type-card.active{
+  background-color: rgb(106, 125, 219);
+  color:white
 }
+ 
+
 .icon {
   font-size: 25px;
-
 }
+
 
 .proceed-btn, .confirm-btn, .next-btn {
   margin-top: 100px;

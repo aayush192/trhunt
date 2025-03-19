@@ -2,7 +2,7 @@ import React from "react";
 import { Link ,NavLink} from "react-router-dom";
 function Footer(){
     return (
-        <footer className="bg-white border-y">
+        <footer className="footer bg-white fixed bottom-0 left-0 w-full py-2">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
@@ -35,7 +35,7 @@ function Footer(){
                             <ul className="text-gray-500 font-medium">
                                 <li className="mb-4">
                                     <a
-                                        href="https://github.com/Sudippandey619"
+                                        href="https://github.com/aayush192"
                                         className="hover:underline"
                                         target="_blank"
                                         rel="noreferrer"
@@ -71,7 +71,7 @@ function Footer(){
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center">
                         © 2025
-                        <a href="https://github.com/Sudippandey619" className="hover:underline">
+                        <a href="https://github.com/aayush192" className="hover:underline">
                         Treasure Hunter
                         </a>
                         . All Rights Reserved.

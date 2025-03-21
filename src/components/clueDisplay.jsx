@@ -80,7 +80,7 @@ const ClueDisplay = () => {
   }
   if (error) return <div>Error: {error}</div>;
   if(ansresponse!=null){
-  if (ansresponse.isGameCompleted) 
+  if (ansresponse.isGameComplete) 
     return (
       <div>
           <div className="clue-icons">

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import userContext from "../context/Context";
 import { useNavigate } from "react-router-dom";
@@ -103,7 +104,7 @@ const ClueDisplay = () => {
       </div>
        </div>
     );
-  }
+  
   return (
     <div className="clue-display">
       {ansresponse ? (

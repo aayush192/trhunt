@@ -2,7 +2,7 @@ import React from "react";
 import { Link ,NavLink} from "react-router-dom";
 function Footer(){
     return (
-        <footer className="footer bg-white fixed bottom-0 left-0 w-full py-2">
+        <div className="footer bg-white left-0 w-full py-2">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
@@ -156,7 +156,7 @@ function Footer(){
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
     );
 }
 

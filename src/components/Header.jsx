@@ -1,26 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
   return (
-    <div className="header flex justify-between items-center px-8 py-4 bg-gray-100 shadow-md">
+    <header className="bg-white shadow-md border-b border-gray-300 py-4 px-8 flex justify-between items-center">
+      {/* Logo */}
       <div className="flex items-center gap-2">
-        <span className="text-3xl font-extrabold text-orange-700 tracking-wide">
-          <NavLink to="/">
+        <NavLink to="/" className="text-4xl font-bold text-orange-600 tracking-wide hover:text-orange-700 transition-colors duration-200">
           Trhunt
-          </NavLink>
-        </span>
+        </NavLink>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex justify-center gap-8">
+      <nav className="flex gap-6">
         <NavLink
-          to={''}
+          to=""
           className={({ isActive }) =>
-            `relative block py-2 px-4 text-lg font-bold duration-200 rounded-md transition-all ${
+            `relative text-lg font-medium px-4 py-2 rounded-lg transition-all duration-200 ${
               isActive
-                ? "text-orange-700 after:absolute after:w-full after:h-[3px] after:bg-blue-400 after:bottom-0 after:left-0"
-                : "text-gray-600 hover:text-orange-800"
+                ? "text-orange-600 after:absolute after:w-full after:h-1 after:bg-orange-600 after:bottom-0 after:left-0"
+                : "text-gray-700 hover:text-orange-600 hover:bg-orange-100"
             }`
           }
         >
@@ -28,19 +28,24 @@ const Header = () => {
         </NavLink>
         
         <NavLink
-          to={'clueDisplay'}
+          to="clueDisplay"
           className={({ isActive }) =>
-            `relative block py-2 px-4 text-lg font-bold duration-200 rounded-md transition-all ${
+            `relative text-lg font-medium px-4 py-2 rounded-lg transition-all duration-200 ${
               isActive
-                ? "text-orange-700 after:absolute after:w-full after:h-[3px] after:bg-blue-400 after:bottom-0 after:left-0"
-                : "text-gray-600 hover:text-orange-800"
+                ? "text-orange-600 after:absolute after:w-full after:h-1 after:bg-orange-600 after:bottom-0 after:left-0"
+                : "text-gray-700 hover:text-orange-600 hover:bg-orange-100"
             }`
           }
         >
           Show Clue
         </NavLink>
+      </nav>
+
+      {/* Search Icon */}
+      <div className="text-gray-600 hover:text-orange-600 cursor-pointer transition-all duration-200">
+        <FaSearch size={20} />
       </div>
-    </div>
+    </header>
   );
 };
 

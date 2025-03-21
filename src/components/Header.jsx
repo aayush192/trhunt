@@ -41,10 +41,6 @@ const Header = () => {
         </NavLink>
       </nav>
 
-      {/* Search Icon */}
-      <div className="text-gray-600 hover:text-orange-600 cursor-pointer transition-all duration-200">
-        <FaSearch size={20} />
-      </div>
     </header>
   );
 };

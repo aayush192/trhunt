@@ -10,10 +10,9 @@ import { useContext, useState } from "react";
 import getClue from "../date-fetch/getClue";
 
 const ClueDisplay = () => {
-  const { data } = useContext(userContext);
+  const { data ,setData,response,setResponse} = useContext(userContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [response, setResponse] = useState(null);
   const [clue, setClue] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [ansresponse, setAnsResponse] = useState(null);
@@ -45,12 +44,14 @@ const ClueDisplay = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+      setData(null);
     }
+  
   };
 
   useEffect(() => {
-    if (data) handleSubmit();
-  }, [data]);
+    if (data!=null) handleSubmit();
+  }, []);
 
   useEffect(() => {
     if (response?.sessionId) fetchClue();
@@ -65,7 +66,7 @@ const ClueDisplay = () => {
       setError(err.message);
     }
   };
-  if (data === null) 
+  if (data === null && response===null) 
     return (
       <div className="flex items-center justify-center h-40 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md">
         First, select a challenge!
@@ -139,7 +140,15 @@ const ClueDisplay = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button className="next-btn" onClick={answerpost}>
+          <button className="next-btn" onClick={()=>{
+            if(searchQuery!=''){
+              answerpost();
+            }
+            else{
+              alert("Please enter an answer before submitting!")
+            }
+          }
+          }>
             Submit
           </button>
         </div>

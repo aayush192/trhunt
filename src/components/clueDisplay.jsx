@@ -134,7 +134,7 @@ const ClueDisplay = () => {
           <div className="search-clue">
             <input 
               type="text" 
-              placeholder="Search Clue Description" 
+              placeholder="Guess the word" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

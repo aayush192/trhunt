@@ -5,13 +5,14 @@ import Layout from './layout/layout.jsx'
 import {  createBrowserRouter, createRoutesFromElements, RouterProvider,Route } from 'react-router-dom'
 import './index.css'
 import GameTypeSelector from './components/gameTypeSelector.jsx'
-
+import AboutPage from './components/about.jsx'
 import ClueDisplay from './components/clueDisplay.jsx'
 
 const router=createBrowserRouter(
 createRoutesFromElements(
   <Route path='/' element={<Layout/>}>
    <Route path='' element={<GameTypeSelector/>}/>
+   <Route path='/about' element={<AboutPage/>}/>
    <Route path='clueDisplay' element={<ClueDisplay/>}/>
   </Route>
 )

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import userContext from "../context/Context";
+import { useNavigate } from "react-router-dom";
 import postVal from "../data-post/datapost";
 import postans from "../data-post/answerpost";
 import { FaPuzzlePiece, FaGem, FaMapMarkedAlt } from 'react-icons/fa';
@@ -16,7 +17,8 @@ const ClueDisplay = () => {
   const [clue, setClue] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [ansresponse, setAnsResponse] = useState(null);
-
+ 
+  const navigate=useNavigate();
   // Moved fetchClue outside useEffect
   const fetchClue = async () => {
     if (response?.sessionId) {
@@ -82,6 +84,7 @@ const ClueDisplay = () => {
   if(ansresponse!=null){
   if (ansresponse.isGameComplete) 
     return (
+
      <div className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-md text-center">
       <div className="flex justify-center gap-2 mb-4">
         {[1, 2, 3, 4, 5].map((item) => (
@@ -93,7 +96,9 @@ const ClueDisplay = () => {
       </p>
       <div className="mt-4">
         <NavLink to={""}>
-          <button className="w-32 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-blue-600 hover:scale-105">
+          <button className="w-32 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-blue-600 hover:scale-105" onClick={
+            navigate('')
+          }>
             OK
           </button>
         </NavLink>

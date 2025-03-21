@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import userContext from "../context/Context";
+import { useNavigate } from "react-router-dom";
 import postVal from "../data-post/datapost";
 import postans from "../data-post/answerpost";
 import { FaPuzzlePiece, FaGem, FaMapMarkedAlt } from 'react-icons/fa';
@@ -16,7 +17,8 @@ const ClueDisplay = () => {
   const [clue, setClue] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [ansresponse, setAnsResponse] = useState(null);
-
+ 
+  const navigate=useNavigate();
   // Moved fetchClue outside useEffect
   const fetchClue = async () => {
     if (response?.sessionId) {
@@ -91,11 +93,11 @@ const ClueDisplay = () => {
           <p>{ansresponse.message}.Try other difficulty level</p>
           <div className="search-clue">
           </div>
-          <NavLink to={''}>
-          <button className="next-btn">
+          <button className="next-btn" onClick={
+            navigate('')
+          }>
             OK
           </button>
-          </NavLink>
         </div>
     );
   }

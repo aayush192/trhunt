@@ -79,6 +79,7 @@ const ClueDisplay = () => {
     );
   }
   if (error) return <div>Error: {error}</div>;
+  if(ansresponse){
   if (ansresponse.isGameCompleted) 
     return (
       <div>
@@ -97,7 +98,7 @@ const ClueDisplay = () => {
           </NavLink>
         </div>
     );
-
+  }
   return (
     <div className="clue-display">
       {ansresponse ? (

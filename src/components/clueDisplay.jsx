@@ -62,7 +62,13 @@ const ClueDisplay = () => {
       setError(err.message);
     }
   };
-  if (data === null) return <div>First select any challenge</div>;
+  if (data === null) 
+    return (
+      <div className="flex items-center justify-center h-40 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md">
+        First, select a challenge!
+      </div>
+    );
+  
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">

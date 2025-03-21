@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import userContext from "../context/Context";
 import postVal from "../data-post/datapost";
 import postans from "../data-post/answerpost";
@@ -78,6 +79,24 @@ const ClueDisplay = () => {
     );
   }
   if (error) return <div>Error: {error}</div>;
+  if (ansresponse.isGameCompleted) 
+    return (
+      <div>
+          <div className="clue-icons">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div key={item} className="clue-icon">⬢</div>
+            ))}
+          </div>
+          <p>{ansresponse.message}.Try other difficulty level</p>
+          <div className="search-clue">
+          </div>
+          <NavLink to={''}>
+          <button className="next-btn">
+            OK
+          </button>
+          </NavLink>
+        </div>
+    );
 
   return (
     <div className="clue-display">

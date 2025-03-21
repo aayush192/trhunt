@@ -82,6 +82,7 @@ const ClueDisplay = () => {
   if(ansresponse!=null){
   if (ansresponse.isGameComplete) 
     return (
+      <div className="clue-display">
       <div>
           <div className="clue-icons">
             {[1, 2, 3, 4, 5].map((item) => (
@@ -96,6 +97,7 @@ const ClueDisplay = () => {
             OK
           </button>
           </NavLink>
+        </div>
         </div>
     );
   }

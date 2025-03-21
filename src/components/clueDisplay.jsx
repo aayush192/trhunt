@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import userContext from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import postVal from "../data-post/datapost";
@@ -95,13 +94,11 @@ const ClueDisplay = () => {
         {ansresponse.message}. Try another difficulty level.
       </p>
       <div className="mt-4">
-        <NavLink to={""}>
           <button className="w-32 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-blue-600 hover:scale-105" onClick={
-            navigate('')
+            navigate('/')
           }>
             OK
           </button>
-        </NavLink>
       </div>
     </div>
     );

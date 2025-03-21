@@ -80,8 +80,7 @@ const ClueDisplay = () => {
     );
   }
   if (error) return <div>Error: {error}</div>;
-  if(ansresponse!=null){
-  if (ansresponse.isGameComplete) 
+  if (ansresponse?.isGameComplete) 
     return (
 
      <div className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-md text-center">
@@ -94,13 +93,14 @@ const ClueDisplay = () => {
         {ansresponse.message}. Try another difficulty level.
       </p>
       <div className="mt-4">
-          <button className="w-32 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-blue-600 hover:scale-105" onClick={
-            navigate('/')
+          <button className="w-32 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-blue-600 hover:scale-105" 
+            onClick={()=>{
+              navigate("/")
+                         }
           }>
             OK
           </button>
       </div>
-    </div>
     );
   }
   return (

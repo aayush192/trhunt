@@ -101,6 +101,7 @@ const ClueDisplay = () => {
             OK
           </button>
       </div>
+       </div>
     );
   }
   return (

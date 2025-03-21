@@ -79,7 +79,7 @@ const ClueDisplay = () => {
     );
   }
   if (error) return <div>Error: {error}</div>;
-  if(ansresponse){
+  if(ansresponse!=null){
   if (ansresponse.isGameCompleted) 
     return (
       <div>

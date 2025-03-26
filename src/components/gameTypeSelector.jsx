@@ -8,8 +8,30 @@ import userContext from '../context/Context';
 const GameTypeSelector = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { data, setData, val, setVal } = useContext(userContext);
+  const { data, setData, val, setVal ,ansresponse} = useContext(userContext);
   const navigate = useNavigate();
+
+  if (ansresponse?.isGameComplete === false) 
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg text-center">
+        <div className="flex justify-center gap-2 mb-4">
+          {[1, 2, 3, 4, 5].map((item) => (
+            <div key={item} className="text-yellow-500 text-2xl">⬢</div>
+          ))}
+        </div>
+        <p className="text-gray-700 text-lg font-medium">
+          {ansresponse.message}. First complete the selected challenge
+        </p>
+        <div className="mt-4">
+          <button 
+            className="w-32 py-2 px-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300 hover:bg-purple-600 hover:scale-105" 
+            onClick={() => navigate("/clueDisplay")}
+          >
+            proceed
+          </button>
+        </div>
+      </div>
+    );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,42 +47,50 @@ const GameTypeSelector = () => {
     fetchData();
   }, []);
 
-  const handleClick = (index, type) => {
-    setActiveButton(index);
-    setData(type);
+  const handleClick = (type) => {
+    setActiveButton(type);
   };
 
   const getIcon = (category) => {
     switch (category) {
       case 'Puzzle Adventure':
-        return <FaMapMarkedAlt className="text-2xl text-blue-500" />;
+        return <FaMapMarkedAlt className="text-3xl text-purple-500" />;
       case 'Treasure Hunt':
-        return <FaGem className="text-2xl text-yellow-500" />;
+        return <FaGem className="text-3xl text-yellow-500" />;
       default:
-        return <FaPuzzlePiece className="text-2xl text-gray-500" />;
+        return <FaPuzzlePiece className="text-3xl text-gray-500" />;
     }
   };
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <AiOutlineLoading3Quarters className="animate-spin text-4xl text-blue-500" />
+        <AiOutlineLoading3Quarters className="animate-spin text-5xl text-purple-500" />
         <p className="ml-3 text-lg font-semibold text-gray-700">Loading challenges...</p>
       </div>
     );
   }
 
   return (
-    <div className="game-type-selector p-5 bg-gray-100 rounded-lg shadow-md flex flex-col items-center">
-      <h2 className="text-xl font-bold mb-4 text-center">Select Your Challenge</h2>
-      <div className="game-selector grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
-        {val.map((element, index) => {
-          const { type, title, description, difficulty, category } = element;
+    <div className="game-type-selector p-8 bg-gray-100 rounded-xl shadow-lg flex flex-col items-center">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Select Your Challenge</h2>
+      <div className="game-selector grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-4xl">
+        {val.map((element,index) => {
+          const { gameId, title, description, difficulty, category } = element;
           return (
-            <div key={type} className="   h-95 p-4 bg-white rounded-lg shadow-md transform transition-transform hover:scale-105">
+            <div key={gameId} className="p-6 bg-white rounded-xl shadow-lg transform transition-transform hover:scale-105">
               <button
-                className={`type-card  p-4 flex flex-col items-center gap-2 ${activeButton === index ? 'border-2 border-blue-500' : ''}`}
-                onClick={() => handleClick(index, type)}
+                className={`type-card p-5 flex flex-col items-center gap-4 border-2 rounded-lg ${activeButton === index ? 'border-purple-500' : 'border-gray-300'}`}
+                onClick={() =>{
+                  if(data===gameId){
+                    handleClick(null);
+                    setData(null);
+                  }
+                  else{
+                   handleClick(index);
+                   setData(gameId);
+                  }
+                }}
               >
                 {getIcon(category)}
                 <div className="icon font-bold text-lg text-gray-700">{difficulty}</div>
@@ -72,19 +102,16 @@ const GameTypeSelector = () => {
           );
         })}
       </div>
-      <div className="game-selector-button mt-2 text-center w-full max-w-md">
-        <button
-          className="proceed-btn bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition w-full"
-          onClick={() => {
-            if (data) {
-              navigate('clueDisplay');
-            } else {
-              alert('Please select a challenge first');
-            }
-          }}
-        >
-          Proceed
-        </button>
+      <div className="game-selector-button mt-6 w-full max-w-md flex justify-center">
+      <button
+        className="mt-8 px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg shadow-md hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={() => {
+            navigate('clueDisplay');
+        }}
+        disabled={!data}
+      >
+        Start Challenge
+      </button>
       </div>
     </div>
   );

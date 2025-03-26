@@ -4,23 +4,23 @@ import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-md border-b border-gray-300 py-4 px-8 flex justify-between items-center">
+    <header className="bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg py-4 px-8 flex justify-between items-center">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <NavLink to="/" className="text-4xl font-bold text-orange-600 tracking-wide hover:text-orange-700 transition-colors duration-200">
+        <NavLink to="/" className="text-4xl font-extrabold text-white tracking-wide hover:text-gray-200 transition-all duration-300">
           Trhunt
         </NavLink>
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex gap-6">
+      <nav className="flex gap-6 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full shadow-md">
         <NavLink
           to=""
           className={({ isActive }) =>
-            `relative text-lg font-medium px-4 py-2 rounded-lg transition-all duration-200 ${
+            `relative text-lg font-medium px-4 py-2 rounded-full transition-all duration-300 ${
               isActive
-                ? "text-orange-600 after:absolute after:w-full after:h-1 after:bg-orange-600 after:bottom-0 after:left-0"
-                : "text-gray-700 hover:text-orange-600 hover:bg-orange-100"
+                ? "text-white bg-white/20 shadow-md"
+                : "text-gray-200 hover:text-white hover:bg-white/20"
             }`
           }
         >
@@ -30,10 +30,10 @@ const Header = () => {
         <NavLink
           to="clueDisplay"
           className={({ isActive }) =>
-            `relative text-lg font-medium px-4 py-2 rounded-lg transition-all duration-200 ${
+            `relative text-lg font-medium px-4 py-2 rounded-full transition-all duration-300 ${
               isActive
-                ? "text-orange-600 after:absolute after:w-full after:h-1 after:bg-orange-600 after:bottom-0 after:left-0"
-                : "text-gray-700 hover:text-orange-600 hover:bg-orange-100"
+                ? "text-white bg-white/20 shadow-md"
+                : "text-gray-200 hover:text-white hover:bg-white/20"
             }`
           }
         >
@@ -42,8 +42,8 @@ const Header = () => {
       </nav>
 
       {/* Search Icon */}
-      <div className="text-gray-600 hover:text-orange-600 cursor-pointer transition-all duration-200">
-        <FaSearch size={20} />
+      <div className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer">
+        <FaSearch size={20} className="text-white" />
       </div>
     </header>
   );

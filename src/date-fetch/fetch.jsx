@@ -11,7 +11,7 @@ const getData = async () => {
 
       const value = await response.json();
       console.log(value)
-      return value.data || []; // Return an empty array if `data` is undefined
+      return value || []; // Return an empty array if `data` is undefined
   } catch (error) {
       console.error("Error fetching data:", error);
       return []; // Return an empty array on failure

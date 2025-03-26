@@ -1,6 +1,6 @@
 import React from "react";
  const postVal=async(data)=>{
-    const resp=await fetch(`https://trhuntapi-production.up.railway.app/game/start/${data}`,{
+    const resp=await fetch(`https://trhuntapi-production.up.railway.app/api/game/start/10`,{
         method:"POST",
         headers: {
             'Content-Type': 'application/json',

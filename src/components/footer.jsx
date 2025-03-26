@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 py-6 mt-12">
+    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 py-6 ">
       <div className="mx-auto w-full max-w-screen-xl p-4 lg:py-8">
         <div className="md:flex md:justify-between">
           {/* Logo */}

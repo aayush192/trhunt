@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const getData = async () => {
   try {
-      const response = await fetch(`https://trhuntapi-production.up.railway.app/games`);
+      const response = await fetch(`https://trhuntapi-production.up.railway.app/api/game/games`);
       
       if (!response.ok) {
           throw new Error(`HTTP Error! Status: ${response.status}`);

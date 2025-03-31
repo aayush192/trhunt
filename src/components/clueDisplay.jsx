@@ -19,7 +19,7 @@ const ClueDisplay = () => {
       setLoading(true);
       setError(null);
       try {
-        const clueData = await getClue(response.sessionId);
+        const clueData = await getClue(response);
         setClue(clueData);
         setAnsResponse(null);
       } catch (err) {
@@ -34,7 +34,7 @@ const ClueDisplay = () => {
     setLoading(true);
     try {
       const res = await postVal(data);
-      setResponse(res.data);
+      setResponse(res);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -53,7 +53,7 @@ const ClueDisplay = () => {
 
   const answerpost = async () => {
     try {
-      const value = await postans(searchQuery, response.sessionId);
+      const value = await postans(searchQuery, response);
       setAnsResponse(value);
       setSearchQuery('');
     } catch (err) {
@@ -130,7 +130,7 @@ const ClueDisplay = () => {
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-800 mb-4">Your Clue:</h3>
             <p className="text-lg font-medium text-indigo-600 bg-indigo-100 px-4 py-2 rounded-lg shadow-inner">
-              {clue?.clue?.text || "No clue available"}
+              {clue?.clue || "No clue available"}
             </p>
             <div className="mt-6">
               <input

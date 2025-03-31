@@ -11,7 +11,7 @@ const GameTypeSelector = () => {
   const { data, setData, val, setVal ,ansresponse} = useContext(userContext);
   const navigate = useNavigate();
 
-  if (ansresponse?.isGameComplete === false) 
+  if (ansresponse?.completed == false) 
     return (
       <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg text-center">
         <div className="flex justify-center gap-2 mb-4">

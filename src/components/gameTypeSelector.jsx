@@ -76,7 +76,7 @@ const GameTypeSelector = () => {
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Select Your Challenge</h2>
       <div className="game-selector grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-4xl">
         {val.map((element,index) => {
-          const { gameId, title, description, difficulty, category } = element;
+          const { rewardPoints,gameId, title, description, difficulty, category } = element;
           return (
             <div key={gameId} className="p-6 bg-white rounded-xl shadow-lg transform transition-transform hover:scale-105">
               <button
@@ -97,6 +97,7 @@ const GameTypeSelector = () => {
                 <h3 className="title font-semibold text-xl text-gray-800">{title}</h3>
                 <p className="description text-gray-600 text-center">{description}</p>
                 <p className="category italic text-gray-500">{category}</p>
+                 <p className="points font-semibold text-purple-600">{rewardPoints} Points</p>
               </button>
             </div>
           );

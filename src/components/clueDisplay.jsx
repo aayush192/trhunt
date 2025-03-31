@@ -62,7 +62,7 @@ const ClueDisplay = () => {
   };
 
   // No Challenge Selected State
-  if (data === null && response === null) {
+  if (data === null && response === null ) {
     return (
       <div className="min-h-[70vh] overflow-auto bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 flex items-center justify-center p-8">
         <div className="max-w-md mx-auto p-8 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl text-center transform hover:scale-105 transition-all duration-300">
@@ -109,7 +109,29 @@ const ClueDisplay = () => {
       </div>
     );
   }
-
+  if (ansresponse?.completed == true) {
+    setResponse(null);
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg text-center">
+        <div className="flex justify-center gap-2 mb-4">
+          {[1, 2, 3, 4, 5].map((item) => (
+            <div key={item} className="text-yellow-500 text-2xl">⬢</div>
+          ))}
+        </div>
+        <p className="text-gray-700 text-lg font-medium">
+          {ansresponse.message}.Try another difficulty level.
+        </p>
+        <div className="mt-4">
+          <button 
+            className="w-32 py-2 px-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300 hover:bg-purple-600 hover:scale-105" 
+            onClick={() => navigate("/")}
+          >
+           NEXT 
+          </button>
+        </div>
+      </div>
+    );
+  }
   // Main UI
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 flex items-center justify-center p-8">
@@ -123,6 +145,7 @@ const ClueDisplay = () => {
               className="mt-6 px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:from-purple-700 hover:to-indigo-700 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               onClick={fetchClue}
             >
+              {console.log(ansresponse.completed)}
               {ansresponse.correct ? 'Next Clue' : 'Try Again'}
             </button>
           </div>
